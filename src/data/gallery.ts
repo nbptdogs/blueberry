@@ -39,7 +39,7 @@ export const galleryItems: GalleryItem[] = [
   { src: "/gallery/shirt.jpeg", alt: "Shop! Shop! Shop!", caption: "Blueberry picking not for you? Come shop!", category: "history", ratio: "4 / 3" },
   { src: "/gallery/model.jpeg", alt: "Pic and Pose", caption: "Come for the pictures, stay for the blueberries.", category: "family", ratio: "3 / 4" },
   { src: "/gallery/sunset.jpeg", alt: "You will still dream about this!", caption: "Dreamy", category: "community", ratio: "4 / 3" },
-  { src: "/gallery/yellow.jpg", alt: "Shirt", caption: "Make your friends jealous with your merch!", category: "landscapes", ratio: "16 / 9" },
+  { src: "/gallery/yellow.jpeg", alt: "Shirt", caption: "Make your friends jealous with your merch!", category: "landscapes", ratio: "16 / 9" },
   { src: "/gallery/bucket.jpeg", alt: "Blueberries in a wooden crate", caption: "Come pick your own!.", category: "berries", ratio: "1 / 1" },
   { src: "/gallery/rename.PNG", alt: "confused", caption: "Why haven't you come pick yet?", category: "season", ratio: "4 / 3" },
 ];
