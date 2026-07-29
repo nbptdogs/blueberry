@@ -70,6 +70,35 @@ const previews = [
     </div>
   </section>
 
+  <!-- ── Social spotlight ─────────────────────────────────────────── -->
+  <SocialSpotlight class="section" />
+
+   <!-- ── Directions ───────────────────────────────────────────────── -->
+  <section class="section section--cream">
+    <div class="container directions">
+      <div class="directions__text">
+        <p class="eyebrow">Find us</p>
+        <h2>Up the mountain, worth the drive.</h2>
+        <p class="lead">{farm.directionsNote}</p>
+        <address class="directions__address">{fullAddress}</address>
+        <p>{farm.season.note}</p>
+        <div class="flow-cta">
+          <a class="btn btn--primary" href={mapDirectionsUrl} target="_blank" rel="noopener">Get Directions</a>
+          <a class="btn btn--ghost" href={href("/info")}>Full Visitor Info</a>
+        </div>
+      </div>
+      <div class="directions__map">
+        <iframe
+          title={`Map showing ${farm.name} in ${farm.address.town}, ${farm.address.state}`}
+          src={mapEmbedUrl}
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
   <!-- ── Three-up editorial imagery ───────────────────────────────── -->
   <section class="section section--tight">
     <div class="container container-wide">
@@ -86,8 +115,6 @@ const previews = [
     </div>
   </section>
 
-  <!-- ── Social spotlight ─────────────────────────────────────────── -->
-  <SocialSpotlight class="section" />
   
   <!-- ── Statement ────────────────────────────────────────────────── -->
   <section class="section section--paper">
@@ -118,32 +145,6 @@ const previews = [
     </div>
   </section>
 
-
-  <!-- ── Directions ───────────────────────────────────────────────── -->
-  <section class="section section--cream">
-    <div class="container directions">
-      <div class="directions__text">
-        <p class="eyebrow">Find us</p>
-        <h2>Up the mountain, worth the drive.</h2>
-        <p class="lead">{farm.directionsNote}</p>
-        <address class="directions__address">{fullAddress}</address>
-        <p>{farm.season.note}</p>
-        <div class="flow-cta">
-          <a class="btn btn--primary" href={mapDirectionsUrl} target="_blank" rel="noopener">Get Directions</a>
-          <a class="btn btn--ghost" href={href("/info")}>Full Visitor Info</a>
-        </div>
-      </div>
-      <div class="directions__map">
-        <iframe
-          title={`Map showing ${farm.name} in ${farm.address.town}, ${farm.address.state}`}
-          src={mapEmbedUrl}
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-        ></iframe>
-      </div>
-    </div>
-  </section>
-</BaseLayout>
 
 <style>
   /* Hero */
