@@ -1,0 +1,153 @@
+---
+/**
+ * FARM STATUS — the "are you open?" answer, reused across the site.
+ * Reads `farmStatus` and `farm.hours` from src/data/farm.ts.
+ *
+ * variant="card"    full editorial panel (homepage hero + Info page)
+ * variant="compact" slimmer version for tighter spots
+ */
+import { farm, farmStatus } from "../data/farm";
+import { href } from "../lib/url";
+
+interface Props {
+  variant?: "card" | "compact";
+  class?: string;
+}
+const { variant = "card", class: className = "" } = Astro.props;
+
+const meta = {
+  open: { label: "Open", tone: "open" },
+  closed: { label: "Closed for the season", tone: "closed" },
+  "opening-soon": { label: "Opening soon", tone: "soon" },
+  "closing-soon": { label: "Season ending soon", tone: "soon" },
+}[farmStatus.status];
+---
+
+<section
+  class={`status status--${meta.tone} status--${variant} ${className}`}
+  aria-labelledby="farm-status-title"
+>
+  <p class="status__flag">
+    <span class="status__dot" aria-hidden="true"></span>
+    {meta.label}
+    <span class="status__updated">· Updated {farmStatus.updated}</span>
+  </p>
+
+  <h2 id="farm-status-title" class="status__headline">{farmStatus.headline}</h2>
+  {variant === "card" && <p class="status__detail">{farmStatus.detail}</p>}
+
+  <dl class="status__hours">
+    <div>
+      <dt>Typical hours</dt>
+      <dd>{farm.hours.summary}</dd>
+    </div>
+    <div>
+      <dt>Where</dt>
+      <dd>{farm.address.town}, {farm.address.state}</dd>
+    </div>
+  </dl>
+
+  <p class="status__note">{farm.hours.importantNote}</p>
+
+  <div class="status__links">
+    <a class="textlink textlink--sm" href={farm.social.instagram.url} target="_blank" rel="noopener">Instagram</a>
+    <a class="textlink textlink--sm" href={farm.social.facebook.url} target="_blank" rel="noopener">Facebook</a>
+    <a class="textlink textlink--sm" href={href("/info")}>Visitor info</a>
+  </div>
+</section>
+
+<style>
+  .status {
+    --tone: var(--indigo);
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-top: 3px solid var(--tone);
+    padding: clamp(1.6rem, 3.5vw, 2.4rem);
+  }
+  .status--open {
+    --tone: var(--open);
+  }
+  .status--closed {
+    --tone: var(--closed);
+  }
+  .status--soon {
+    --tone: var(--soon);
+  }
+
+  .status__flag {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0 0 1rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--tone);
+  }
+  .status__dot {
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 50%;
+    background: var(--tone);
+    flex-shrink: 0;
+  }
+  .status__updated {
+    color: var(--ink-3);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+  }
+  .status__headline {
+    font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2rem);
+    line-height: 1.15;
+    margin: 0 0 0.6rem;
+  }
+  .status__detail {
+    color: var(--ink-2);
+    margin-bottom: 1.5rem;
+  }
+  .status__hours {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 0 0 1.25rem;
+    padding: 1.1rem 0;
+    border-block: 1px solid var(--line);
+  }
+  .status__hours dt {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin-bottom: 0.25rem;
+  }
+  .status__hours dd {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    color: var(--ink);
+  }
+  .status__note {
+    font-size: 0.88rem;
+    color: var(--ink-2);
+    margin: 0 0 1.4rem;
+  }
+  .status__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+  .textlink--sm {
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    padding-bottom: 0.25rem;
+  }
+
+  .status--compact {
+    padding: 1.3rem 1.5rem;
+  }
+  .status--compact .status__hours {
+    margin-bottom: 1rem;
+  }
+</style>

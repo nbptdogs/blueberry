@@ -1,0 +1,287 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import FarmStatus from "../components/FarmStatus.astro";
+import SocialSpotlight from "../components/SocialSpotlight.astro";
+import PreviewCard from "../components/PreviewCard.astro";
+import Placeholder from "../components/Placeholder.astro";
+import BotanicalSprig from "../components/BotanicalSprig.astro";
+import Icon from "../components/Icon.astro";
+import { farm, mapDirectionsUrl, mapEmbedUrl, fullAddress } from "../data/farm";
+import { href } from "../lib/url";
+
+const gallery3 = [
+  { label: "In the rows", caption: "Heirloom highbush blueberries, ripened slowly at elevation." },
+  { label: "The view", caption: "Three-state views from the top of the field." },
+  { label: "Fresh-picked", caption: "A morning's pick, still cool from the bush." },
+];
+
+const previews = [
+  { title: "Our Story", description: "A family farm on Mt. Washington, growing heirloom blueberries since 1941.", path: "/about", cta: "About the farm", label: "Family photograph" },
+  { title: "The Cookbook", description: "Blueberry recipes for breakfast, dessert, drinks, preserves, and more.", path: "/cookbook", cta: "Browse recipes", label: "Recipe photograph" },
+  { title: "Gallery", description: "The rows, the ridgelines, and the small moments of a Berkshire summer.", path: "/gallery", cta: "See the farm", label: "Gallery photograph" },
+  { title: "Around Us", description: "Where to eat, hike, and wander while you're in the southern Berkshires.", path: "/around", cta: "Explore nearby", label: "Berkshires photograph" },
+];
+---
+
+<BaseLayout title="Home" description={farm.shortDescription} path="/">
+  <!-- ── Hero (editorial title card) ──────────────────────────────── -->
+  <section class="hero">
+    <div class="hero__frame">
+      <div class="container container-narrow hero__inner">
+        <BotanicalSprig size={54} class="hero__sprig" />
+        <p class="eyebrow eyebrow--center">Pick-Your-Own · Est. 1941</p>
+        <h1>Mount Washington grown Blueberries&nbsp;hills.</h1>
+        <p class="lead hero__lead">
+          A family-run farm on Mt.&nbsp;Washington, where you can pick
+          your own blueberries by the bucket — with a beautiful view of the Berkshires thrown in for free.
+        </p>
+        <div class="flow-cta hero__cta">
+          <a class="btn btn--primary" href={href("/info")}>Plan Your Visit</a>
+          <a class="btn btn--ghost" href={farm.social.instagram.url} target="_blank" rel="noopener">This Week's Hours</a>
+        </div>
+        <p class="hero__meta">{farm.address.street} · {farm.address.town}, {farm.address.stateLong}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Welcome + status ─────────────────────────────────────────── -->
+  <section class="section section--cream">
+    <div class="container welcome">
+      <div class="welcome__text">
+        <p class="eyebrow">A note from the farm</p>
+        <h2>A short season, a long tradition.</h2>
+        <p class="lead">
+          Blueberry Hill Farm has been part of Mt.&nbsp;Washington — the
+          smallest town in Massachusetts — since Robert&nbsp;W.&nbsp;Austin
+          planted the first bushes in 1941.
+        </p>
+        <p>
+          Up here at elevation, our berries ripen a week or two behind the
+          valley, on old-fashioned varieties you won't find in a grocery store.
+          Bring the family, grab a bucket at check-in, and take your time in the
+          rows. When you're done, we'll weigh you out and send you home with the
+          best blueberries you'll taste all summer.
+        </p>
+        <a class="textlink" href={href("/about")}>Read our story <Icon name="arrow-right" size={15} /></a>
+      </div>
+      <div class="welcome__status">
+        <FarmStatus variant="card" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Three-up editorial imagery ───────────────────────────────── -->
+  <section class="section section--tight">
+    <div class="container container-wide">
+      <div class="three-up">
+        {
+          gallery3.map((g) => (
+            <figure class="three-up__item">
+              <Placeholder ratio="3 / 4" label={g.label} />
+              <figcaption>{g.caption}</figcaption>
+            </figure>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Social spotlight ─────────────────────────────────────────── -->
+  <SocialSpotlight class="section" />
+  
+  <!-- ── Statement ────────────────────────────────────────────────── -->
+  <section class="section section--paper">
+    <div class="container container-narrow center">
+      <p class="eyebrow eyebrow--center">Your farm in the Berkshires</p>
+      <h2 class="statement">
+        We grow blueberries the slow way — patiently, on the same hillside, for
+        the people who make the drive up to find us.
+      </h2>
+      <hr class="rule" />
+      <p class="lead">
+        Rooted in Mt.&nbsp;Washington and open to the whole valley below, we're a
+        small farm with a long memory and an open gate each summer.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── Explore previews ─────────────────────────────────────────── -->
+  <section class="section section--cream">
+    <div class="container">
+      <div class="headline">
+        <p class="eyebrow eyebrow--center">Explore</p>
+        <h2>A closer look</h2>
+      </div>
+      <div class="grid previews">
+        {previews.map((p) => <PreviewCard {...p} />)}
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ── Directions ───────────────────────────────────────────────── -->
+  <section class="section section--cream">
+    <div class="container directions">
+      <div class="directions__text">
+        <p class="eyebrow">Find us</p>
+        <h2>Up the mountain, worth the drive.</h2>
+        <p class="lead">{farm.directionsNote}</p>
+        <address class="directions__address">{fullAddress}</address>
+        <p>{farm.season.note}</p>
+        <div class="flow-cta">
+          <a class="btn btn--primary" href={mapDirectionsUrl} target="_blank" rel="noopener">Get Directions</a>
+          <a class="btn btn--ghost" href={href("/info")}>Full Visitor Info</a>
+        </div>
+      </div>
+      <div class="directions__map">
+        <iframe
+          title={`Map showing ${farm.name} in ${farm.address.town}, ${farm.address.state}`}
+          src={mapEmbedUrl}
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* Hero */
+  .hero {
+    background: var(--paper);
+  }
+  .hero__frame {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: min(92svh, 52rem);
+    margin: clamp(0.75rem, 2vw, 1.5rem);
+    margin-top: calc(-1 * var(--header-h));
+    padding-top: var(--header-h);
+    border: 1px solid var(--line-2);
+  }
+  .hero__inner {
+    text-align: center;
+    padding-block: clamp(3rem, 8vw, 6rem);
+  }
+  .hero__sprig {
+    color: var(--ink-3);
+    margin: 0 auto 1.5rem;
+  }
+  .hero h1 {
+    margin-bottom: 0;
+  }
+  .hero__lead {
+    max-width: 48ch;
+    margin: 1.5rem auto 0;
+  }
+  .hero__cta {
+    justify-content: center;
+    margin-top: 2rem;
+  }
+  .hero__meta {
+    margin-top: 2.5rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+
+  /* Welcome */
+  .welcome {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: clamp(2.5rem, 6vw, 5rem);
+    align-items: center;
+  }
+  .welcome__text .textlink {
+    margin-top: 1.75rem;
+  }
+  @media (max-width: 54rem) {
+    .welcome {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Three-up */
+  .three-up {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(1rem, 2.5vw, 1.75rem);
+  }
+  .three-up__item {
+    margin: 0;
+  }
+  .three-up figcaption {
+    margin-top: 0.9rem;
+    font-size: 0.85rem;
+    color: var(--ink-2);
+    line-height: 1.5;
+  }
+  @media (max-width: 48rem) {
+    .three-up {
+      grid-template-columns: 1fr;
+      max-width: 26rem;
+      margin-inline: auto;
+    }
+  }
+
+  /* Statement */
+  .statement {
+    font-size: clamp(1.6rem, 1.2rem + 1.8vw, 2.6rem);
+    font-style: italic;
+    line-height: 1.25;
+    max-width: 22ch;
+    margin-inline: auto;
+  }
+
+  /* Previews */
+  .previews {
+    grid-template-columns: repeat(4, 1fr);
+    margin-top: clamp(2rem, 4vw, 3rem);
+  }
+  @media (max-width: 66rem) {
+    .previews {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 34rem) {
+    .previews {
+      grid-template-columns: 1fr;
+      max-width: 22rem;
+      margin-inline: auto;
+    }
+  }
+
+  /* Directions */
+  .directions {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+  }
+  .directions__address {
+    font-style: normal;
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    color: var(--ink);
+    margin: 1rem 0;
+  }
+  .directions__map {
+    aspect-ratio: 4 / 3;
+    background: var(--paper-3);
+    border: 1px solid var(--line);
+  }
+  .directions__map iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+  }
+  @media (max-width: 54rem) {
+    .directions {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

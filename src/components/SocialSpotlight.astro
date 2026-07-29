@@ -1,0 +1,84 @@
+---
+/**
+ * Social spotlight — Instagram & Facebook as the best source for live hours,
+ * picking conditions, closures, and announcements. Calm, editorial treatment.
+ */
+import { farm } from "../data/farm";
+import Icon from "./Icon.astro";
+
+interface Props {
+  class?: string;
+}
+const { class: className = "" } = Astro.props;
+---
+
+<section class={`spotlight section--berry ${className}`} aria-labelledby="spotlight-title">
+  <div class="container container-narrow center">
+    <p class="eyebrow eyebrow--center">The latest from the farm</p>
+    <h2 id="spotlight-title">Follow along for today's picking conditions</h2>
+    <hr class="rule" />
+    <p class="lead">
+      Our season is short and the weather has the final say. The fastest way to
+      know whether we're open, how the berries are coming in, and when we close
+      for the day is on Instagram and Facebook — that's where we post first.
+    </p>
+
+    <div class="spotlight__links">
+      <a class="spotlight__card" href={farm.social.instagram.url} target="_blank" rel="noopener">
+        <Icon name="instagram" size={24} />
+        <span class="spotlight__handle">{farm.social.instagram.handle}</span>
+        <span class="spotlight__meta">Photos &amp; daily updates</span>
+      </a>
+      <a class="spotlight__card" href={farm.social.facebook.url} target="_blank" rel="noopener">
+        <Icon name="facebook" size={24} />
+        <span class="spotlight__handle">Blueberry Hill Farm</span>
+        <span class="spotlight__meta">Announcements &amp; hours</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .spotlight__links {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    margin-top: 2.5rem;
+    text-align: left;
+  }
+  @media (max-width: 34rem) {
+    .spotlight__links {
+      grid-template-columns: 1fr;
+    }
+  }
+  .spotlight__card {
+    display: grid;
+    gap: 0.3rem;
+    padding: 1.5rem 1.6rem;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    text-decoration: none;
+    color: #fff;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+  }
+  .spotlight__card:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.5);
+    text-decoration: none;
+    color: #fff;
+  }
+  .spotlight__card :global(svg) {
+    color: #b7b3cf;
+    margin-bottom: 0.5rem;
+  }
+  .spotlight__handle {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    color: #fff;
+  }
+  .spotlight__meta {
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #9c98c0;
+  }
+</style>

@@ -1,0 +1,85 @@
+---
+/**
+ * Editorial, image-led card linking to a major section.
+ * Uses a neutral Placeholder frame until a real photo is supplied.
+ */
+import { href } from "../lib/url";
+import Placeholder from "./Placeholder.astro";
+import Icon from "./Icon.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  path: string;
+  cta: string;
+  label?: string;
+}
+const {
+  title,
+  description,
+  path,
+  cta,
+  label = "Photograph",
+} = Astro.props;
+---
+
+<a class="preview" href={href(path)}>
+  <div class="preview__media">
+    <Placeholder ratio="5 / 4" label={label} />
+  </div>
+  <div class="preview__body">
+    <h3>{title}</h3>
+    <p>{description}</p>
+    <span class="preview__cta">{cta} <Icon name="arrow-right" size={15} /></span>
+  </div>
+</a>
+
+<style>
+  .preview {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+    gap: 1.25rem;
+  }
+  .preview__media {
+    overflow: hidden;
+  }
+  .preview__media :global(.ph) {
+    transition: transform 0.5s cubic-bezier(0.2, 0, 0.2, 1);
+  }
+  .preview:hover .preview__media :global(.ph) {
+    transform: scale(1.03);
+  }
+  .preview__body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    flex: 1;
+  }
+  .preview__body h3 {
+    margin: 0;
+  }
+  .preview__body p {
+    color: var(--ink-2);
+    font-size: 0.98rem;
+    flex: 1;
+  }
+  .preview__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    font-size: 0.74rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin-top: 0.2rem;
+  }
+  .preview__cta :global(svg) {
+    transition: transform 0.22s ease;
+  }
+  .preview:hover .preview__cta :global(svg) {
+    transform: translateX(5px);
+  }
+</style>

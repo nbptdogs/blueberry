@@ -1,0 +1,48 @@
+---
+/**
+ * Consistent editorial page header for interior pages.
+ * Cream background with a botanical mark, centered title, and short rule.
+ */
+import BotanicalSprig from "./BotanicalSprig.astro";
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  intro?: string;
+  sprig?: boolean;
+}
+const { eyebrow, title, intro, sprig = true } = Astro.props;
+---
+
+<section class="page-header">
+  <div class="container container-narrow center">
+    {sprig && <BotanicalSprig size={44} class="page-header__sprig" />}
+    {eyebrow && <p class="eyebrow eyebrow--center">{eyebrow}</p>}
+    <h1>{title}</h1>
+    {intro && <p class="lead page-header__intro">{intro}</p>}
+    <slot />
+  </div>
+</section>
+
+<style>
+  .page-header {
+    padding-top: calc(var(--header-h) + clamp(2rem, 6vw, 4rem));
+    padding-bottom: clamp(2.5rem, 5vw, 3.75rem);
+    background: var(--paper);
+  }
+  .page-header__sprig {
+    color: var(--line-2);
+    margin: 0 auto 1.25rem;
+  }
+  .page-header h1 {
+    margin-bottom: 0;
+  }
+  .page-header__intro {
+    max-width: 52ch;
+    margin: 1.25rem auto 0;
+  }
+  .page-header :global(.flow-cta) {
+    margin-top: 1.75rem;
+    justify-content: center;
+  }
+</style>

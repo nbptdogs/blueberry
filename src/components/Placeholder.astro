@@ -1,0 +1,94 @@
+---
+/**
+ * An elegant, neutral stand-in for a photograph the farm will supply later.
+ * Designed as a warm matte "frame" — calm and editorial, never a colored tile —
+ * so the layout looks finished while making it clear a real image belongs here.
+ *
+ * Swap for a real <Image /> when photos arrive (see CONTENT-GUIDE.md).
+ *
+ *   ratio  aspect ratio, e.g. "4 / 3", "16 / 9", "1 / 1"
+ *   fill   stretch to fill a positioned parent instead of using `ratio`
+ *   label  small caption shown under the mark
+ */
+import BotanicalSprig from "./BotanicalSprig.astro";
+
+interface Props {
+  label?: string;
+  ratio?: string;
+  fill?: boolean;
+  class?: string;
+}
+const {
+  label = "Photograph",
+  ratio = "4 / 3",
+  fill = false,
+  class: className = "",
+} = Astro.props;
+---
+
+<div
+  class={`ph ${fill ? "ph--fill" : ""} ${className}`}
+  style={fill ? undefined : `--ratio:${ratio};`}
+  role="img"
+  aria-label={`${label} — image coming soon`}
+>
+  <span class="ph__frame" aria-hidden="true"></span>
+  <span class="ph__mark" aria-hidden="true">
+    <BotanicalSprig size={52} stroke={1.1} />
+    <span class="ph__label">{label}</span>
+  </span>
+</div>
+
+<style>
+  .ph {
+    position: relative;
+    width: 100%;
+    aspect-ratio: var(--ratio);
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background: linear-gradient(160deg, var(--ph-bg), var(--ph-bg-2));
+    color: var(--ph-ink);
+  }
+  .ph--fill {
+    position: absolute;
+    inset: 0;
+    aspect-ratio: auto;
+    height: 100%;
+  }
+  /* faint grain so the matte doesn't read as flat/empty */
+  .ph::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(
+        rgba(255, 255, 255, 0.5) 0.5px,
+        transparent 0.5px
+      ),
+      radial-gradient(rgba(133, 124, 103, 0.14) 0.5px, transparent 0.5px);
+    background-size: 7px 7px, 11px 11px;
+    background-position: 0 0, 3px 4px;
+    opacity: 0.5;
+  }
+  .ph__frame {
+    position: absolute;
+    inset: clamp(0.6rem, 2%, 1.1rem);
+    border: 1px solid var(--ph-line);
+  }
+  .ph__mark {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.7rem;
+    text-align: center;
+    padding: 1rem;
+  }
+  .ph__label {
+    font-family: var(--font-body);
+    font-size: 0.66rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+</style>
