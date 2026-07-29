@@ -71,7 +71,21 @@ const previews = [
   </section>
 
   <!-- ── Social spotlight ─────────────────────────────────────────── -->
-  <SocialSpotlight class="section" />
+  <SocialSpotlight class="section" />ß
+
+  <!-- ── Explore previews ─────────────────────────────────────────── -->
+  <section class="section section--cream">
+    <div class="container">
+      <div class="headline">
+        <p class="eyebrow eyebrow--center">Explore</p>
+        <h2>A closer look</h2>
+      </div>
+      <div class="grid previews">
+        {previews.map((p) => <PreviewCard {...p} />)}
+      </div>
+    </div>
+  </section>
+
 
   <!-- ── Directions ───────────────────────────────────────────────── -->
   <section class="section section--cream">
@@ -94,52 +108,6 @@ const previews = [
           loading="lazy"
           referrerpolicy="no-referrer-when-downgrade"
         ></iframe>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── Three-up editorial imagery ───────────────────────────────── -->
-  <section class="section section--tight">
-    <div class="container container-wide">
-      <div class="three-up">
-        {
-          gallery3.map((g) => (
-            <figure class="three-up__item">
-              <Placeholder ratio="3 / 4" label={g.label} />
-              <figcaption>{g.caption}</figcaption>
-            </figure>
-          ))
-        }
-      </div>
-    </div>
-  </section>
-
-  
-  <!-- ── Statement ────────────────────────────────────────────────── -->
-  <section class="section section--paper">
-    <div class="container container-narrow center">
-      <p class="eyebrow eyebrow--center">Your farm in the Berkshires</p>
-      <h2 class="statement">
-        We grow blueberries the slow way — patiently, on the same hillside, for
-        the people who make the drive up to find us.
-      </h2>
-      <hr class="rule" />
-      <p class="lead">
-        Rooted in Mt.&nbsp;Washington and open to the whole valley below, we're a
-        small farm with a long memory and an open gate each summer.
-      </p>
-    </div>
-  </section>
-
-  <!-- ── Explore previews ─────────────────────────────────────────── -->
-  <section class="section section--cream">
-    <div class="container">
-      <div class="headline">
-        <p class="eyebrow eyebrow--center">Explore</p>
-        <h2>A closer look</h2>
-      </div>
-      <div class="grid previews">
-        {previews.map((p) => <PreviewCard {...p} />)}
       </div>
     </div>
   </section>

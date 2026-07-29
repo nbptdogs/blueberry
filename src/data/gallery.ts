@@ -30,16 +30,16 @@ export interface GalleryItem {
 
 /** Placeholder set — replace `src` values as real photos arrive. */
 export const galleryItems: GalleryItem[] = [
-  { src: "", alt: "Close-up of ripe blueberries on the bush", caption: "Ripe and ready — deep blue with a silvery bloom.", category: "berries", ratio: "4 / 3" },
-  { src: "", alt: "A hand reaching into a blueberry bush", caption: "Roll the ripe ones gently off the stem.", category: "season", ratio: "3 / 4" },
-  { src: "", alt: "View over the Berkshire hills from the farm", caption: "Three-state views from the top of the rows.", category: "landscapes", ratio: "16 / 9" },
-  { src: "", alt: "Rows of blueberry bushes on the hillside", caption: "The rows climbing the mountain.", category: "landscapes", ratio: "4 / 3" },
-  { src: "", alt: "A full bucket of freshly picked blueberries", caption: "A morning's pick, ready to weigh out.", category: "berries", ratio: "1 / 1" },
-  { src: "", alt: "Family picking blueberries together", caption: "A summer tradition, passed down.", category: "family", ratio: "4 / 3" },
-  { src: "/gallery/farm.jpg", alt: "Painting of the farm", caption: "The farm in an earlier season.", category: "history", ratio: "4 / 3" },
-  { src: "", alt: "Children exploring the blueberry rows", caption: "Little pickers welcome.", category: "family", ratio: "3 / 4" },
-  { src: "", alt: "Visitors chatting at the farm check-in", caption: "Neighbors and visitors at check-in.", category: "community", ratio: "4 / 3" },
-  { src: "", alt: "Morning mist over the mountain field", caption: "Early mist before the gate opens.", category: "landscapes", ratio: "16 / 9" },
-  { src: "", alt: "Blueberries in a wooden crate", caption: "Heirloom varieties you won't find in a store.", category: "berries", ratio: "1 / 1" },
-  { src: "", alt: "Sunset behind the blueberry bushes", caption: "The last light over the rows.", category: "season", ratio: "4 / 3" },
+  { src: "/gallery/close.JPG", alt: "Close-up of ripe blueberries on the bush", caption: "Ripe and ready — deep blue with a silvery bloom.", category: "berries", ratio: "4 / 3" },
+  { src: "/gallery/sign.jpeg", alt: "You've been looking for a sign.", caption: "You've been looking for a sign..", category: "season", ratio: "3 / 4" },
+  { src: "/gallery/Nat.jpeg", alt: "Look at that view!", caption: "That could be you", category: "landscapes", ratio: "16 / 9" },
+  { src: "/gallery/vardo.JPG", alt: "Vardo", caption: "Head towards the Vardo", category: "landscapes", ratio: "4 / 3" },
+  { src: "/gallery/blubs.jpeg", alt: "Freshly picked blueberries", caption: "A morning's pick, ready to weigh out.", category: "berries", ratio: "1 / 1" },
+  { src: "/gallery/fam.jpeg", alt: "Family Affair", caption: "A summer tradition, passed down.", category: "family", ratio: "4 / 3" },
+  { src: "/gallery/shirt.jpeg", alt: "Shop! Shop! Shop!", caption: "Blueberry picking not for you? Come shop!", category: "history", ratio: "4 / 3" },
+  { src: "/gallery/model.jpeg", alt: "Pic and Pose", caption: "Come for the pictures, stay for the blueberries.", category: "family", ratio: "3 / 4" },
+  { src: "/gallery/sunset.jpeg", alt: "You will still dream about this!", caption: "Dreamy", category: "community", ratio: "4 / 3" },
+  { src: "/gallery/yellow.jpg", alt: "Shirt", caption: "Make your friends jealous with your merch!", category: "landscapes", ratio: "16 / 9" },
+  { src: "/gallery/bucket.jpeg", alt: "Blueberries in a wooden crate", caption: "Come pick your own!.", category: "berries", ratio: "1 / 1" },
+  { src: "/gallery/rename.PNG", alt: "confused", caption: "Why haven't you come pick yet?", category: "season", ratio: "4 / 3" },
 ];
