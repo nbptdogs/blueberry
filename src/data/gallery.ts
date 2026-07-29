@@ -36,7 +36,7 @@ export const galleryItems: GalleryItem[] = [
   { src: "", alt: "Rows of blueberry bushes on the hillside", caption: "The rows climbing the mountain.", category: "landscapes", ratio: "4 / 3" },
   { src: "", alt: "A full bucket of freshly picked blueberries", caption: "A morning's pick, ready to weigh out.", category: "berries", ratio: "1 / 1" },
   { src: "", alt: "Family picking blueberries together", caption: "A summer tradition, passed down.", category: "family", ratio: "4 / 3" },
-  { src: "farm.jpg", alt: "Painting of the farm", caption: "The farm in an earlier season.", category: "history", ratio: "4 / 3" },
+  { src: "/gallery/farm.jpg", alt: "Painting of the farm", caption: "The farm in an earlier season.", category: "history", ratio: "4 / 3" },
   { src: "", alt: "Children exploring the blueberry rows", caption: "Little pickers welcome.", category: "family", ratio: "3 / 4" },
   { src: "", alt: "Visitors chatting at the farm check-in", caption: "Neighbors and visitors at check-in.", category: "community", ratio: "4 / 3" },
   { src: "", alt: "Morning mist over the mountain field", caption: "Early mist before the gate opens.", category: "landscapes", ratio: "16 / 9" },
